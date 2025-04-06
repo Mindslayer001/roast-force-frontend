@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 import html2canvas from 'html2canvas';
-import { SocialPostGeneratorProps } from '../@Types/SocialMediaGeneratorProps';
+import { UserDetails } from '../@Types/UserDetails';
 
 
 
-const SocialPostGenerator: React.FC<SocialPostGeneratorProps> = ({ username, postText, avatarUrl }) => {
+const SocialPostGenerator: React.FC<UserDetails> = ({ username, postText, avatarUrl }) => {
   const previewRef = useRef<HTMLDivElement>(null);
 
   const handleShare = async () => {
@@ -39,7 +39,7 @@ const SocialPostGenerator: React.FC<SocialPostGeneratorProps> = ({ username, pos
         className="bg-white shadow-md rounded-xl p-4 max-w-lg flex gap-4 items-start"
       >
         <img
-          src={avatarUrl}
+          src={avatarUrl?? ""}
           alt="avatar"
           className="w-12 h-12 rounded-full object-cover"
         />
