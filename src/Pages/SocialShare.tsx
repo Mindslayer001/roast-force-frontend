@@ -1,35 +1,36 @@
 import React, { useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { UserDetails } from '../@Types/UserDetails';
 import html2canvas from 'html2canvas';
+import RoastCard from '../Components/RoastCard';
+import { UserDetails } from '../@Types/UserDetails';
 
 const SocialShare: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
   const state = location.state as UserDetails | undefined;
+  const cardRef = useRef<HTMLDivElement>(null);
 
   if (!state) {
     return (
-      <div className="text-center mt-10">
-        <h2 className="text-lg font-semibold">Oops! Missing roast data 🥲</h2>
-        <button
-          onClick={() => navigate('/')}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-        >
+      <div className="container text-center mt-5">
+        <h2 className="fw-semibold">Oops! Missing roast data 🥲</h2>
+        <button className="btn btn-primary mt-3" onClick={() => navigate('/')}>
           Back to Home
         </button>
       </div>
     );
   }
 
-  const { username, postText, avatarUrl } = state;
-  const cardRef = useRef<HTMLDivElement>(null);
+  const { username, avatarUrl, postText, error } = state;
 
-  const captureCard = async () => {
+  const handleExport = async () => {
     if (!cardRef.current) return;
 
-    const canvas = await html2canvas(cardRef.current);
+    const canvas = await html2canvas(cardRef.current, {
+      scale: window.devicePixelRatio,
+      useCORS: true,
+    });
+
     const blob = await new Promise<Blob | null>((resolve) =>
       canvas.toBlob((b) => resolve(b), 'image/png')
     );
@@ -49,7 +50,7 @@ const SocialShare: React.FC = () => {
         console.error('Sharing failed:', err);
       }
     } else {
-      alert("Sharing blob is not supported in your browsers. Please download it and share it manually.")
+      alert('Sharing not supported. Downloading image instead.');
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
@@ -62,26 +63,32 @@ const SocialShare: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 min-h-screen bg-gray-100">
-      <div
-        ref={cardRef}
-        className="bg-white rounded-2xl shadow-lg p-6 w-80 text-center"
-      >
-        <img
-          src={avatarUrl ?? ''}
-          alt="User Profile"
-          className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-        />
-        <h2 className="text-xl font-semibold">{username}</h2>
-        <p className="text-gray-600 mt-2">{postText}</p>
+    <div className="container py-5 d-flex flex-column align-items-center justify-content-center min-vh-100">
+      <h1 className="display-4 text-center mb-4 text-primary">Share Your Roast</h1>
+
+<div className="d-flex justify-content-center mb-4">
+  <RoastCard
+    ref={cardRef}
+    username={username}
+    avatarUrl={avatarUrl}
+    postText={postText}
+    error={error}
+  />
+</div>
+
+
+      <div className="d-flex gap-3 flex-wrap justify-content-center">
+        <button className="btn btn-warning btn-lg" onClick={handleExport}>
+          {navigator.canShare?.() ? '📱 Share Card' : '⬇️ Download'}
+        </button>
+        <button className="btn btn-outline-primary btn-lg" onClick={() => navigate('/')}>
+          🆕 New Roast
+        </button>
       </div>
 
-      <button
-        onClick={captureCard}
-        className="mt-6 px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-      >
-        {navigator.canShare?.({ files: [new File([], '')] }) ? 'Share on Social' : 'Download Image'}
-      </button>
+      <p className="text-muted text-center mt-4">
+        Pro tip: Perfect for Twitter/X, Instagram, and Discord flexing 📱
+      </p>
     </div>
   );
 };

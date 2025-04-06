@@ -2,87 +2,110 @@ import React, {useRef} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import IAmJustARat from './../assets/I_am_just_a_rat.png';
 import { UserDetails } from '../@Types/UserDetails';
+
 const UserPage = () => {
   const responseContentRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
-
   const state = location.state as UserDetails | undefined;
-  
-    if (!state) {
-      return (
-        <div>
-          <h2>Oops! Missing roast data 🥲</h2>
-          <button onClick={() => navigate('/')}>Back to Home</button>
-        </div>
-      );
-    }
 
-    const { username, postText, avatarUrl, error } = state;
-
-    const handleShare = () => {
-      navigate('/share', {
-        state: {
-          username: username,
-          postText: postText,
-          avatarUrl: avatarUrl,
-          error : error
-        },
-      });
-    };
-
+  if (!state) {
     return (
-        <div className="min-vh-100 bg-gradient-primary d-flex align-items-center">
-            <div className="container py-5">
-                <div className="row justify-content-center">
-                    <div className="col-12 col-md-8 col-lg-6">
-                        <div className="card shadow-lg border-0 rounded-3">
-                            <div className="card-body p-5">
-                                {error ? (
-                                    <div className="text-center">
-                                        <h2 className="mb-4 text-danger">Oops! Something went wrong 😢</h2>
-                                        <img 
-                                            src={IAmJustARat} 
-                                            className="img-fluid rounded-3 mb-4"
-                                            style={{ maxWidth: '200px' }}
-                                            alt="Error illustration"
-                                        />
-                                        <button 
-                                            onClick={() => navigate('/')}
-                                            className="btn btn-primary px-5 py-2"
-                                        >
-                                            ↩️ Try Again
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <>
-                                        <h3 className="text-center mb-4 display-5 fw-bold">
-                                            🍗 Roast Summary
-                                        </h3>
-                                        <div 
-                                            ref={responseContentRef}
-                                            className="bg-light rounded-3 p-4 mb-4 shadow-sm"
-                                            style={{ minHeight: '200px', maxHeight: '400px', overflowY: 'auto' }}
-                                        >
-                                            <p className="lead mb-0">{postText || "Your roast is cooking..."}</p>
-                                        </div>
-                                        {postText && (
-                                            <button 
-                                                onClick={handleShare}
-                                                className="btn btn-success w-100 py-2 fw-bold"
-                                            >
-                                                📢 Share Your Roast
-                                            </button>
-                                        )}
-                                    </>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div className="home-container flex-center">
+        <div className="container">
+          <div className="roast-header">
+            <h2 className="text-gradient">⚠️ Missing Roast Data</h2>
+            <button 
+              onClick={() => navigate('/')}
+              className="roast-button"
+            >
+              ↩️ Back to Roaster
+            </button>
+          </div>
         </div>
+      </div>
     );
+  }
+
+  const { username, postText, avatarUrl, error } = state;
+
+  const handleShare = () => {
+    navigate('/share', { state: { username, postText, avatarUrl, error } });
+  };
+
+  return (
+    <div className="home-container flex-center">
+      <div className="container">
+        <div className="roast-header">
+          <h1 className="roast-title text-gradient">
+            {error ? 'Compilation Error 😢' : 'Roast Results 🍗'}
+          </h1>
+          
+          <div className="user-card">
+            {error ? (
+              <div className="text-center">
+                <img 
+                  src={IAmJustARat} 
+                  className="user-avatar border-danger"
+                  style={{ maxWidth: '200px' }}
+                  alt="Error illustration"
+                />
+                <div className="alert alert-danger mt-4">
+                  <strong>CE:</strong> {error}
+                </div>
+                <button 
+                  onClick={() => navigate('/')}
+                  className="roast-button"
+                >
+                  ↩️ Try Again (Maybe AC next time?)
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="text-center mb-4">
+                  <img
+                    src={avatarUrl || 'https://via.placeholder.com/150/333333/cccccc?text=CF'}
+                    className="user-avatar"
+                    alt="User avatar"
+                  />
+                  <h2 className="text-gradient mt-3">
+                    {username || "Anonymous Coder"}
+                    <small className="d-block mt-2 fs-6 text-muted">(Rating: 100% unoriginal)</small>
+                  </h2>
+                </div>
+
+                <div 
+                  ref={responseContentRef}
+                  className="roast-summary"
+                  style={{ minHeight: '200px', maxHeight: '400px' }}
+                >
+                  <p className="lead text-white-50">
+                    {postText || "Your roast is compiling... (jk, we're not that fast)"}
+                  </p>
+                </div>
+
+                {postText && (
+                  <div className="input-group">
+                    <button 
+                      onClick={handleShare}
+                      className="roast-button"
+                    >
+                      📢 Share Your Roast 
+                      <span className="ms-2">(Flex responsibly)</span>
+                    </button>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className="pro-tip">
+          <p>Pro tip: {error ? 'Check your handle spelling!' : 'Share your roast to establish dominance 💪'}</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default UserPage;

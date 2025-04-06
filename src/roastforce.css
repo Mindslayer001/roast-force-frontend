@@ -1,0 +1,54 @@
+/* Custom Codeforces theme */
+:root {
+    --cf-primary: #3b5998;
+    --cf-secondary: #ffd700;
+    --cf-dark: #1a1a1a;
+    --cf-dark-2: #2d2d2d;
+}
+
+.bg-dark-2 { background-color: var(--cf-dark-2) !important; }
+.text-cf-primary { color: var(--cf-secondary) !important; }
+.text-cf-secondary { color: var(--cf-primary) !important; }
+.border-cf { border-color: var(--cf-primary) !important; }
+
+.btn-cf-gradient {
+    background: linear-gradient(45deg, var(--cf-primary), var(--cf-secondary));
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-cf-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(var(--cf-primary), 0.4);
+}
+
+.text-gradient-cf {
+    background: -webkit-linear-gradient(45deg, var(--cf-primary), var(--cf-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-glow 2s ease-in-out infinite;
+}
+
+.cf-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cf-scrollbar::-webkit-scrollbar-track {
+    background: var(--cf-dark);
+}
+
+.cf-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--cf-primary);
+    border-radius: 4px;
+}
+
+.cf-alert {
+    background: rgba(255, 56, 96, 0.2);
+    border: 1px solid var(--cf-secondary);
+}
+
+@keyframes text-glow {
+    0%, 100% { text-shadow: 0 0 10px var(--cf-primary); }
+    50% { text-shadow: 0 0 20px var(--cf-secondary); }
+}

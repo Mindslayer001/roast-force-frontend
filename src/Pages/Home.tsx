@@ -55,59 +55,65 @@ const Home = () => {
       setInput(e.target.value);
     };
 
+  return (
+    <div className="home-container flex-center">
+    <div className="container">
+      <div className="roast-header">
+        <div className="text-gradient">🔥 Handle Roaster 3000 🔥</div>
+        <h1 className="roast-title text-gradient">RoastForce</h1>
 
-    return (
-        <div className="min-vh-100 bg-gradient-primary d-flex align-items-center">
-            <div className="container py-5">
-                <div className="row justify-content-center">
-                    <div className="col-12 col-md-8 col-lg-6">
-                        <div className="card shadow-lg border-0 rounded-3">
-                            <div className="card-body p-5">
-                                <h1 className="text-center mb-4 display-4 fw-bold text-gradient">
-                                    🔥 RoastForce 🔥
-                                </h1>
 
-                                {error && (
-                                    <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                                        {error}
-                                        <button type="button" className="btn-close" onClick={() => setError('')} />
-                                    </div>
-                                )}
+                  {error && (
+                      <div className="error-message">
+                          <span className="">⚠️ {error} (typical rookie mistake)</span>
+                          <button 
+                              onClick={() => setError('')}
+                              className=""
+                          >
+                              ×
+                          </button>
+                      </div>
+                  )}
 
-                                <form onSubmit={handleSubmit} className="mb-4">
-                                    <div className="input-group input-group-lg">
-                                        <input
-                                            type="text"
-                                            className="form-control form-control-lg border-end-0"
-                                            value={input}
-                                            onChange={handleInputChange}
-                                            placeholder="Enter Codeforces handle..."
-                                            required
-                                            disabled={isLoading}
-                                        />
-                                        <button 
-                                            type="submit" 
-                                            className="btn btn-danger btn-lg px-5"
-                                            disabled={isLoading}
-                                        >
-                                            {isLoading ? (
-                                                <>
-                                                    <span className="spinner-border spinner-border-sm me-2" />
-                                                    Roasting...
-                                                </>
-                                            ) : (
-                                                'Generate Roast 🔥'
-                                            )}
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+                  <form onSubmit={handleSubmit} className="roast-form">
+                      <div className="input-group">
+                          <input
+                              type="text"
+                              className="roast-input"
+                              value={input}
+                              onChange={handleInputChange}
+                              placeholder="Enter CF handle..."
+                              required
+                              disabled={isLoading}
+                          />
+                          <button
+                              type="submit" 
+                              className="roast-button"
+                              disabled={isLoading}
+                          >
+                              {isLoading ? (
+                                  <div className="">
+                                      <div className="" />
+                                      <span>Roasting...</span>
+                                  </div>
+                              ) : (
+                                  <>
+                                      Generate Roast 
+                                      <span className="">🔥</span>
+                                      <div className="" />
+                                  </>
+                              )}
+                          </button>
+                      </div>
+                  </form>
+              </div>
+              
+              <div className="pro-tip">
+                  <p>Pro tip: Enter your real handle for maximum roasting potential 😈</p>
+              </div>
+          </div>
+      </div>
+  );
 };
 
 export default Home;
