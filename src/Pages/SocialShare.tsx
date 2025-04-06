@@ -11,9 +11,14 @@ const SocialShare: React.FC = () => {
 
   if (!state) {
     return (
-      <div>
-        <h2>Oops! Missing roast data 🥲</h2>
-        <button onClick={() => navigate('/')}>Back to Home</button>
+      <div className="text-center mt-10">
+        <h2 className="text-lg font-semibold">Oops! Missing roast data 🥲</h2>
+        <button
+          onClick={() => navigate('/')}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Back to Home
+        </button>
       </div>
     );
   }
@@ -33,25 +38,31 @@ const SocialShare: React.FC = () => {
 
     const file = new File([blob], `${username}_card.png`, { type: 'image/png' });
 
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    if (navigator.canShare?.({ files: [file] })) {
       try {
         await navigator.share({
           files: [file],
           title: `${username}'s Post`,
-          text: postText??"",
+          text: postText ?? '',
         });
       } catch (err) {
         console.error('Sharing failed:', err);
       }
     } else {
-      // Fallback: open image in new tab
-      const imageURL = URL.createObjectURL(blob);
-      window.open(imageURL, '_blank');
+      alert("Sharing blob is not supported in your browsers. Please download it and share it manually.")
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${username}_card.png`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6">
+    <div className="flex flex-col items-center justify-center p-6 min-h-screen bg-gray-100">
       <div
         ref={cardRef}
         className="bg-white rounded-2xl shadow-lg p-6 w-80 text-center"
@@ -67,9 +78,9 @@ const SocialShare: React.FC = () => {
 
       <button
         onClick={captureCard}
-        className=""
+        className="mt-6 px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
       >
-        Share on Social
+        {navigator.canShare?.({ files: [new File([], '')] }) ? 'Share on Social' : 'Download Image'}
       </button>
     </div>
   );
