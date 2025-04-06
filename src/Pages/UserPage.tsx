@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import {useRef} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import IAmJustARat from './../assets/I_am_just_a_rat.png';
 import { UserDetails } from '../@Types/UserDetails';
