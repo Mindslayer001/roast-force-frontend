@@ -51,7 +51,7 @@ const UserPage = () => {
                   alt="Error illustration"
                 />
                 <div className="alert alert-danger mt-4">
-                  <strong>CE:</strong> {error}
+                  <strong>CE:</strong><p>Please Contact the developer <a href="https://x.com/ismycodeshit">IsMyCodeShit</a> in X</p>
                 </div>
                 <button 
                   onClick={() => navigate('/')}
