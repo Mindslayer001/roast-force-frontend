@@ -1,0 +1,142 @@
+@media (max-width: 576px) {
+  .display-4 {
+    font-size: 1.8rem !important;
+  }
+
+  .btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .achievement-banner {
+    font-size: 0.9rem;
+    padding: 0.5rem !important;
+  }
+
+  .btn {
+    min-height: 44px;
+    margin: 0.25rem 0;
+  }
+
+  .d-sm-flex {
+    flex-direction: column;
+  }
+}
+.avatar-image {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .display-4 {
+    font-size: 2.2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .img-fluid {
+    width: 100%;
+  }
+}
+
+.max-width-md {
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Add smooth transitions for responsive changes */
+.btn, .display-4 {
+  transition: all 0.3s ease;
+}
+
+/* Ensure card fits on smaller screens */
+.roast-card {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Responsive container */
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* High DPI screen optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .img-fluid {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* Loading spinner enhancement */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Accessibility improvements */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.achievement-badge {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.achievement-badge.locked {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.achievement-badge.unlocked {
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.3);
+}
+
+.achievement-emoji {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.achievement-title {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.achievement-banner {
+  background: linear-gradient(45deg, #ffd700, #ffa500);
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
