@@ -1,0 +1,29 @@
+.countdown-timer {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.timer {
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.timer-warning {
+  color: #ff4d4d;
+  animation: pulse 1s infinite;
+}
+
+.timer-complete {
+  color: #4ade80;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}

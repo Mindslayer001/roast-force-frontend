@@ -2,6 +2,8 @@ import {useRef} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import IAmJustARat from './../assets/I_am_just_a_rat.png';
 import { UserDetails } from '../@Types/UserDetails';
+import CountdownTimer from '../Components/CountdownTimer';
+import '../styles/CountdownTimer.css';
 
 const UserPage = () => {
   const responseContentRef = useRef<HTMLDivElement>(null);
@@ -27,7 +29,9 @@ const UserPage = () => {
     );
   }
 
-  const { username, postText, avatarUrl, error } = state;
+  const { username, postText, avatarUrl, timer, new_user, error } = state;
+
+  console.log('UserPage state:', state);
 
   const handleShare = () => {
     navigate('/share', { state: { username, postText, avatarUrl, error } });
@@ -99,10 +103,19 @@ const UserPage = () => {
             )}
           </div>
         </div>
-
-        <div className="pro-tip">
-          <p>Pro tip: {error ? 'Check your handle spelling!' : 'Share your roast to establish dominance 💪'}</p>
-        </div>
+        {timer ? (
+            <div className="pro-tip">
+              <p>
+                Time until next roast: <CountdownTimer targetDate={timer} />
+              </p>
+              <p>Pro tip: {error ? 'Check your handle spelling!' : 'Sign up to have zero countdown'}</p>
+            </div>
+        ) : (
+          <div className="pro-tip">
+            <p>Pro tip: {error ? 'Check your handle spelling!' : 'Share your roast to establish dominance 💪'}</p>
+          </div>
+        )}
+        
       </div>
     </div>
   );
