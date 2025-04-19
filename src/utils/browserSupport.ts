@@ -1,7 +1,7 @@
 export const browserSupport = {
   canShare: () => {
     return typeof navigator !== 'undefined' && 
-           navigator.share && 
+           typeof navigator.share !== 'undefined' && 
            navigator.canShare;
   },
   
@@ -10,6 +10,7 @@ export const browserSupport = {
       const canvas = document.createElement('canvas');
       return !!(canvas.getContext && canvas.getContext('2d'));
     } catch (e) {
+      alert(`Canvas not supported in this browser. Please use a modern browser.${e}`);
       return false;
     }
   },

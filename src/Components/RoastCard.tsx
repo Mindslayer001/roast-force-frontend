@@ -1,10 +1,9 @@
 import React from 'react';
 import { UserDetails } from '../@Types/UserDetails';
-import pattern from "../assets/pattern.png";
 import '../styles/RoastCard.css';
 
 const RoastCard = React.forwardRef<HTMLDivElement, UserDetails>(
-  ({ username, avatarUrl, postText, timer, new_user, error }, ref) => {
+  ({ username, avatarUrl, postText, error }, ref) => {
     return (
       <div
         ref={ref}

@@ -3,8 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import RoastCard from '../Components/RoastCard';
 import { UserDetails } from '../@Types/UserDetails';
-import { motion, AnimatePresence } from 'framer-motion';
-import confetti from 'canvas-confetti';
+import { motion } from 'framer-motion';
 import { browserSupport } from '../utils/browserSupport';
 
 const SocialShare: React.FC = () => {
@@ -12,7 +11,6 @@ const SocialShare: React.FC = () => {
   const navigate = useNavigate();
   const state = location.state as UserDetails | undefined;
   const cardRef = useRef<HTMLDivElement>(null);
-  const [shareCount, setShareCount] = useState(0);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -35,7 +33,7 @@ const SocialShare: React.FC = () => {
       }
       celebrateShare();
     } catch (err) {
-      setError('Failed to download image. Please try again.');
+      setError(`Failed to download image. Please try again. ,${err}`);
     }
   };
 

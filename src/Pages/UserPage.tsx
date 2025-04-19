@@ -29,7 +29,7 @@ const UserPage = () => {
     );
   }
 
-  const { username, postText, avatarUrl, timer, new_user, error } = state;
+  const { username, postText, avatarUrl, timer, error } = state;
 
   console.log('UserPage state:', state);
 
