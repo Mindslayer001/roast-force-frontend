@@ -28,9 +28,11 @@ const Home = () => {
       } catch (err) {
         const message = err instanceof Error ? err.message : "Request failed";
         const errorData: UserDetails = {
-          username: "",
-          postText: "",
-          avatarUrl: "",
+          username: null,
+          postText: null,
+          avatarUrl: null,
+          timer: null,
+          new_user: false,
           error: message
         };
         handleShare(errorData);
@@ -46,6 +48,8 @@ const Home = () => {
             username: shareData.username || "",
             postText: shareData.postText || "",
             avatarUrl: shareData.avatarUrl || "",
+            timer: shareData.timer || 0,
+            new_user: shareData.new_user || false,
             error: shareData.error || ""
           },
         });
