@@ -203,7 +203,7 @@ const SocialShare: React.FC = () => {
                   onClick={handleShare}
                   disabled={isGenerating}
                 >
-                  {browserSupport.canShare() ? '🔥 Share' : '⬇️ Download'}
+                  {browserSupport.canShare() ? ' Share to your friends' : 'Download'}
                 </motion.button>
                 <motion.button 
                   className="btn btn-outline-secondary btn-lg px-4"
@@ -211,7 +211,7 @@ const SocialShare: React.FC = () => {
                   whileTap={{ scale: 0.95 }}
                   onClick={() => navigate('/')}
                 >
-                  🌶️ Cook Another
+                  Wanna Cook Another
                 </motion.button>
               </div>
             </div>
