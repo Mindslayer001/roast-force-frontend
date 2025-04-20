@@ -31,7 +31,6 @@ const SocialShare: React.FC = () => {
         // Fallback for older browsers
         window.open(generatedImage, '_blank');
       }
-      celebrateShare();
     } catch (err) {
       setError(`Failed to download image. Please try again. ,${err}`);
     }
@@ -56,7 +55,6 @@ const SocialShare: React.FC = () => {
 
         if (navigator.canShare(shareData)) {
           await navigator.share(shareData);
-          celebrateShare();
           return;
         }
       }
@@ -223,7 +221,4 @@ const SocialShare: React.FC = () => {
 };
 
 export default SocialShare;
-function celebrateShare() {
-  throw new Error('Function not implemented.');
-}
 
