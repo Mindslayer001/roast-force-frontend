@@ -1,6 +1,8 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { UserDetails } from '../@Types/UserDetails';
+import LetHimCook from '../assets/let_him_cook.png';
 import '../styles/Home.css';
 
 const Home = () => {
@@ -13,7 +15,7 @@ const Home = () => {
       e.preventDefault();
       setError("");
       setIsLoading(true);
-        console.log(import.meta.env.VITE_API_URL)
+        // console.log(import.meta.env.VITE_API_URL)
       try {
         const response = await fetch(import.meta.env.VITE_API_URL, {
           method: 'POST',
@@ -96,20 +98,51 @@ const Home = () => {
                 disabled={isLoading}
               >
                 {isLoading ? (
-                  <div className="">
-                    <div className="" />
+                  <div className="loading-wrapper">
+                    <div className="loading-spinner" />
                     <span>Roasting...</span>
                   </div>
                 ) : (
-                  <>
-                    Generate Roast 
-                    <span className=""></span>
-                    <div className="" />
-                  </>
+                  <>Generate Roast 🔥</>
                 )}
               </button>
             </div>
           </form>
+
+          <AnimatePresence>
+            {isLoading && (
+              <>
+                {/* Blur Overlay */}
+                <motion.div 
+                  className="blur-overlay"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                />
+                
+                {/* Loading Dialog */}
+                <motion.div 
+                  className="loading-dialog"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                >
+                  <div className="loading-content">
+                    <img 
+                      src={LetHimCook} 
+                      alt="Cooking..." 
+                      className="cooking-image"
+                      height={200}
+                    />
+                    <div className="cooking-text">
+                      <h3 className="text-gradient">Please wait while we cook...</h3>
+                      <p>Preparing your roast with extra spice! 🌶️</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
           
           <Link to="/about" className="about-link">
             Want to More About RoastForce

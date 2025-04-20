@@ -32,7 +32,7 @@ const UserPage = () => {
 
   const { username, postText, avatarUrl, timer, error } = state;
 
-  console.log('UserPage state:', state);
+  // console.log('UserPage state:', state);
 
   const handleShare = () => {
     navigate('/share', { state: { username, postText, avatarUrl, error } });
@@ -45,6 +45,9 @@ const UserPage = () => {
           <h1 className="roast-title text-gradient">
             {error ? 'Compilation Error 😢' : 'Profile Summary'}
           </h1>
+            {timer?<p>
+              Time until next roast: <CountdownTimer targetDate={timer} />
+            </p>: null}
           
           <div className="user-card">
             {error ? (
@@ -69,9 +72,11 @@ const UserPage = () => {
               <>
                 <div className="text-center mb-4">
                   <img
-                    src={avatarUrl || 'https://via.placeholder.com/150/333333/cccccc?text=CF'}
+                    src={avatarUrl || 'https://via.placeholder.com/10/333333/cccccc?text=CF'}
                     className="user-avatar"
                     alt="User avatar"
+                    height={10}
+                    width={10}
                   />
                   <h2 className="text-gradient mt-3">
                     {username || "Anonymous Coder"}
@@ -107,22 +112,13 @@ const UserPage = () => {
             )}
           </div>
         </div>
-        {timer ? (
-          <div className="pro-tip">
-            <p>
-              Time until next roast: <CountdownTimer targetDate={timer} />
-            </p>
-            <p className="small-text">
-              Pro tip: {error ? 'Check your handle spelling!' : 'Sign up to have zero countdown'}
-            </p>
-          </div>
-        ) : (
+
+
           <div className="pro-tip">
             <p>
               Pro tip: {error ? 'Check your handle spelling!' : 'Share your roast to establish dominance 💪'}
             </p>
           </div>
-        )}
       </div>
     </div>
   );

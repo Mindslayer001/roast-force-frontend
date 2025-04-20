@@ -61,7 +61,7 @@ const SocialShare: React.FC = () => {
       // Fallback to download
       await handleDownload();
     } catch (err) {
-      console.error('Share failed:', err);
+      // console.error('Share failed:', err);
       await handleDownload();
     }
   };
@@ -105,7 +105,7 @@ const SocialShare: React.FC = () => {
       setGeneratedImage(dataUrl);
     } catch (err) {
       setError('Failed to generate image. Please try again.');
-      console.error('Generation failed:', err);
+      // console.error('Generation failed:', err);
     } finally {
       setIsGenerating(false);
     }

@@ -39,8 +39,8 @@
 }
 
 .user-avatar {
-  width: clamp(100px, 25vw, 200px);
-  height: clamp(100px, 25vw, 200px);
+  width: clamp(50px, 12vw, 100px);
+  height: clamp(50px, 12vw, 100px);
   border-radius: 50%;
   object-fit: cover;
 }
