@@ -52,11 +52,11 @@ const UserPage = () => {
                 <img 
                   src={IAmJustARat} 
                   className="user-avatar border-danger"
-                  style={{ maxWidth: '200px' }}
                   alt="Error illustration"
                 />
                 <div className="alert alert-danger mt-4">
-                  <strong>CE:</strong><p>Please Contact the developer <a href="https://x.com/ismycodeshit">IsMyCodeShit</a> in X</p>
+                  <strong>CE:</strong>
+                  <p>Please Contact the developer <a href="https://x.com/ismycodeshit">IsMyCodeShit</a> in X</p>
                 </div>
                 <button 
                   onClick={() => navigate('/')}
@@ -75,7 +75,9 @@ const UserPage = () => {
                   />
                   <h2 className="text-gradient mt-3">
                     {username || "Anonymous Coder"}
-                    <small className="d-block mt-2 fs-6 text-muted">(Rating: 100% unoriginal)</small>
+                    <small className="d-block mt-2 small-text text-muted">
+                      (Rating: 100% unoriginal)
+                    </small>
                   </h2>
                 </div>
 
@@ -97,7 +99,7 @@ const UserPage = () => {
                       className="roast-button"
                     >
                       📢 Share Your Roast 
-                      <span className="ms-2">(Flex responsibly)</span>
+                      <span className="ms-2 small-text">(Flex responsibly)</span>
                     </button>
                   </div>
                 )}
@@ -106,18 +108,21 @@ const UserPage = () => {
           </div>
         </div>
         {timer ? (
-            <div className="pro-tip">
-              <p>
-                Time until next roast: <CountdownTimer targetDate={timer} />
-              </p>
-              <p>Pro tip: {error ? 'Check your handle spelling!' : 'Sign up to have zero countdown'}</p>
-            </div>
+          <div className="pro-tip">
+            <p>
+              Time until next roast: <CountdownTimer targetDate={timer} />
+            </p>
+            <p className="small-text">
+              Pro tip: {error ? 'Check your handle spelling!' : 'Sign up to have zero countdown'}
+            </p>
+          </div>
         ) : (
           <div className="pro-tip">
-            <p>Pro tip: {error ? 'Check your handle spelling!' : 'Share your roast to establish dominance 💪'}</p>
+            <p>
+              Pro tip: {error ? 'Check your handle spelling!' : 'Share your roast to establish dominance 💪'}
+            </p>
           </div>
         )}
-        
       </div>
     </div>
   );

@@ -29,6 +29,44 @@
   margin: 0;
 }
 
+.roast-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  margin-bottom: clamp(1rem, 2vw, 2rem);
+}
+
+.user-card {
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.user-avatar {
+  width: clamp(100px, 25vw, 200px);
+  height: clamp(100px, 25vw, 200px);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text-gradient {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+}
+
+.small-text {
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+}
+
+.alert {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+}
+
+.roast-button {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 3vw, 2.5rem);
+}
+
+.pro-tip {
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  margin-top: clamp(1rem, 2vw, 2rem);
+}
+
 /* Custom scrollbar styling */
 .roast-text-content::-webkit-scrollbar {
   width: 6px;
@@ -62,6 +100,35 @@
   }
 }
 
+@media (max-width: 480px) {
+  .user-card {
+    padding: 1rem;
+  }
+
+  .roast-summary-container {
+    padding: 0.75rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .roast-button {
+    width: 100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .user-card {
+    padding: 1.5rem;
+  }
+
+  .roast-summary-container {
+    padding: 1rem;
+  }
+}
+
 @media (min-width: 768px) {
   .roast-summary-container {
     padding: 0.5rem;
@@ -70,6 +137,10 @@
   
   .roast-text-content {
     padding: 1.5rem;
+  }
+
+  .user-card {
+    padding: 2rem;
   }
 }
 
