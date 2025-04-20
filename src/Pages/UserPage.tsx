@@ -4,6 +4,7 @@ import IAmJustARat from './../assets/I_am_just_a_rat.png';
 import { UserDetails } from '../@Types/UserDetails';
 import CountdownTimer from '../Components/CountdownTimer';
 import '../styles/CountdownTimer.css';
+import '../styles/UserPage.css';
 
 const UserPage = () => {
   const responseContentRef = useRef<HTMLDivElement>(null);
@@ -42,7 +43,7 @@ const UserPage = () => {
       <div className="container">
         <div className="roast-header">
           <h1 className="roast-title text-gradient">
-            {error ? 'Compilation Error 😢' : 'Roast Results 🍗'}
+            {error ? 'Compilation Error 😢' : 'Profile Summary'}
           </h1>
           
           <div className="user-card">
@@ -80,12 +81,13 @@ const UserPage = () => {
 
                 <div 
                   ref={responseContentRef}
-                  className="roast-summary"
-                  style={{ minHeight: '200px', maxHeight: '400px' }}
+                  className="roast-summary-container"
                 >
-                  <p className="lead text-white-50">
-                    {postText || "Your roast is compiling... (jk, we're not that fast)"}
-                  </p>
+                  <div className="roast-text-content">
+                    <p className="roast-text">
+                      {postText || "Your roast is compiling... (jk, we're not that fast)"}
+                    </p>
+                  </div>
                 </div>
 
                 {postText && (
