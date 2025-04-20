@@ -4,7 +4,6 @@ import UserPage from './Pages/UserPage';
 import SocialShare from './Pages/SocialShare';
 import {PageNotFound} from './Pages/PageNotFound';
 import About from './Pages/About';
-import { Analytics } from '@vercel/analytics/react';
 
 
 import './App.css';
@@ -19,7 +18,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-      <Analytics />
       </>
   );
 }
