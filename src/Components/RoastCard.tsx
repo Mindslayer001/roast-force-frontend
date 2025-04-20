@@ -3,7 +3,7 @@ import { UserDetails } from '../@Types/UserDetails';
 import '../styles/RoastCard.css';
 
 const RoastCard = React.forwardRef<HTMLDivElement, UserDetails>(
-  ({ username, avatarUrl, postText, error }, ref) => {
+  ({ username, avatarUrl, postText }, ref) => {
     return (
       <div
         ref={ref}
