@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import '../styles/About.css';
@@ -40,7 +39,7 @@ const About = () => {
           <div className="user-card mb-5">
             <h2 className="text-gradient mb-4">Our Mission 🎯</h2>
             <p className="roast-text">
-              I want to learna dn showcase my skills thats way I created this project.By after working on tis I felt like this is going to be something good.
+              I want to learn and showcase my skills thats way I created this project. By after working on tis I felt like this is going to be something good.
             </p>
           </div>
 
