@@ -151,7 +151,7 @@ const SocialShare: React.FC = () => {
           <motion.h1 
             className="display-4 text-center mb-4 fw-bold"
             animate={{ scale: [1, 1.02, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 2 }}
           >
             Your Spicy Roast is Ready! 🔥
           </motion.h1>
